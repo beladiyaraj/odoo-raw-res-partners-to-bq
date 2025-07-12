@@ -1,0 +1,14 @@
+{
+  "odoo": {
+    "base_url": "https://production.unimig.com.au",
+    "api_key": "0594ca08-f4e4-4f0f-a5eb-ac5e03a759b9",
+    "login": "admin",
+    "password": "Unimig@2024",
+    "db_name": "v17_unimig_live"
+  },
+  "bigquery": {
+    "project_id": "unimig-data-project",
+    "dataset_id": "raw_odoo_data",
+    "bucket_name": "bucket_for_raw_odoo_data_temp_files"
+  }
+}
