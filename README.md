@@ -1,0 +1,1 @@
+# odoo-raw-res-partners-to-bq
