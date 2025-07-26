@@ -52,7 +52,8 @@ class OdooAPI:
             'street': str(record.get('street', '')),
             'street2': str(record.get('street2', '')),
             'contact_address_complete': str(record.get('contact_address_complete', '')),
-            'contact_type': str(record.get('contact_type', ''))
+            'contact_type': str(record.get('contact_type', '')),
+            'category_id': str(record.get('category_id', ''))
         }
 
     def fetch_res_partner(self, existing_ids):
