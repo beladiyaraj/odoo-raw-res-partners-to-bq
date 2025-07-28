@@ -45,6 +45,9 @@ class OdooAPI:
 
     def process_res_partner(self, record):
         """Process a single record into the desired format."""
+        category_list = record.get('category_id', [])
+        category_value = str(category_list[0]) if category_list else None
+
         return {
             'id': str(record['id']),
             'name': str(record.get('name', '')),
@@ -53,7 +56,7 @@ class OdooAPI:
             'street2': str(record.get('street2', '')),
             'contact_address_complete': str(record.get('contact_address_complete', '')),
             'contact_type': str(record.get('contact_type', '')),
-            'category_id': str(record.get('category_id', ''))
+            'category_id': category_value
         }
 
     def fetch_res_partner(self, existing_ids):
