@@ -2,6 +2,7 @@ import json
 import logging
 from datetime import datetime
 
+
 def load_config():
     """Load configuration from config.json."""
     try:
@@ -10,6 +11,7 @@ def load_config():
     except FileNotFoundError:
         logging.error("Configuration file not found.")
         raise
+
 
 def format_timestamp(timestamp):
     """Format timestamps to BigQuery-compatible format."""
@@ -29,7 +31,7 @@ def format_timestamp(timestamp):
             except ValueError as ve:
                 return str(timestamp)
 
+
 def safe_get(data, field):
     """Helper function to safely get field values."""
     return data[field] if field in data and data[field] is not None else None
-

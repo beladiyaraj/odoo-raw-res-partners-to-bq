@@ -59,6 +59,18 @@ class OdooAPI:
             'category_id': category_value
         }
 
+    def fetch_res_partner_category(self):
+        """Fetch res partner categories from Odoo."""
+        fields = ["id", "name"]
+        records = self._make_request('res.partner.category', fields)
+        logging.info(
+            f"Data retrieved from API. Total records: {len(records)}.")
+        if not records:
+            logging.info("No res partner categories found.")
+            return []
+
+        return records
+
     def fetch_res_partner(self, existing_ids):
         """Fetch res users records from Odoo and process them."""
 
@@ -82,3 +94,14 @@ class OdooAPI:
         processed_records = list(map(self.process_res_partner, new_records))
 
         return processed_records  # Only new records to be inserted into BigQuery
+
+    def map_category_ids_with_names(self, new_records, category_response):
+        """Map category IDs in new records with their names from the fetched categories."""
+        category_map = {str(cat['id']): cat['name']
+                        for cat in category_response}
+        for record in new_records:
+            if record['category_id'] in category_map:
+                record['category_id'] = category_map[record['category_id']]
+            else:
+                record['category_id'] = None
+        return new_records
